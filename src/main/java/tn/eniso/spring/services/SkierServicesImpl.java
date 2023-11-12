@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.eniso.spring.entities.*;
 import tn.eniso.spring.repositories.*;
-import tn.esprit.spring.entities.*;
-import tn.esprit.spring.repositories.*;
 
 import java.util.HashSet;
 import java.util.List;

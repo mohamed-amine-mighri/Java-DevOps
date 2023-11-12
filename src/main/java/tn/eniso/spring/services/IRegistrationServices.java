@@ -2,7 +2,6 @@ package tn.eniso.spring.services;
 
 import tn.eniso.spring.entities.Registration;
 import tn.eniso.spring.entities.Support;
-import tn.esprit.spring.entities.*;
 
 import java.util.List;
 
