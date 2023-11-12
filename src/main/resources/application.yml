@@ -8,10 +8,10 @@ spring:
   mvc:
     format:
       date: dd/MM/yyyy
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/stationSki?createDatabaseIfNotExist=true
-    username: root
-    password: "02011213"
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/stationSki?createDatabaseIfNotExist=true
+#    username: root
+#    password: "02011213"
   jpa:
     show-sql: true
     hibernate:
