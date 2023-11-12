@@ -6,14 +6,14 @@ pipeline {
     }
 
     stages {
-//         stage("build jar") {
-//             steps {
-//                 script {
-//                     echo 'building the app...'
-//                     sh 'mvn package'
-//                 }
-//             }
-//         }
+        stage("build jar") {
+            steps {
+                script {
+                    echo 'building the app...'
+                    sh 'mvn package'
+                }
+            }
+        }
 
         stage("build image") {
             steps {
