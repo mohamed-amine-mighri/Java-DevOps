@@ -1,5 +1,4 @@
 pipeline{
-    agent  an
     tools{
         maven 'Maven'
     }
@@ -17,10 +16,10 @@ pipeline{
             steps{
                 script{
                     echo 'building docker image...'
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]){
-                        sh 'docker build -t aminemighri/demo-repo:2.0'
+                    withCredentials([usernamePassword(credentialsId: 'amine-docker', passwordVariable: 'PASS', usernameVariable: 'USER')]){
+                        sh 'docker build -t aminemighri/demo-java-Ops:2.0'
                         sh "echo $PASS | docker login -u $USER --password-stdin"
-                        sh 'docker push aminemighri/demo-repo:jma-2.0'
+                        sh 'docker push aminemighri/demo-java-Ops:jma-2.0'
                     }
                 }
             }
@@ -39,7 +38,7 @@ pipeline{
             checkout scm
           }
           stage('SonarQube Analysis') {
-            def mvn = tool 'Default Maven';
+            def mvn = tool 'Maven';
             withSonarQubeEnv() {
               sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=amine-app-scan -Dsonar.projectName='amine-app-scan'"
             }
