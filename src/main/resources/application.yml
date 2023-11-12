@@ -4,10 +4,10 @@ server:
     context-path: /api
   port: 9096
 
-spring:
-  mvc:
-    format:
-      date: dd/MM/yyyy
+#spring:
+#  mvc:
+#    format:
+#      date: dd/MM/yyyy
 #  datasource:
 #    url: jdbc:mysql://127.0.0.1:3306/stationSki?createDatabaseIfNotExist=true
 #    username: root
@@ -19,12 +19,12 @@ spring:
 #      properties:
 #        hibernate:
 #          dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-
-logging:
-  level:
-    root: info
-  pattern:
-    console: =%d{yyyy-MM-dd HH:mm:ss} -  %-5level- %logger{45} - %msg %n
+#
+#logging:
+#  level:
+#    root: info
+#  pattern:
+#    console: =%d{yyyy-MM-dd HH:mm:ss} -  %-5level- %logger{45} - %msg %n
 
 
 
