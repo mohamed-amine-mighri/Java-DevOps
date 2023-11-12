@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent any // Add this line to specify the agent
 
     tools {
         maven 'Maven'
@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     echo 'building the app...'
-                    sh 'mvn install'
+                    sh 'mvn package'
                 }
             }
         }
@@ -20,9 +20,9 @@ pipeline {
                 script {
                     echo 'building docker image...'
                     withCredentials([usernamePassword(credentialsId: 'amine-docker', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh 'docker build -t aminemighri/demo-java-Ops:2.0'
+                        sh 'docker build -t aminemighri/demo-java-Ops:2.0 .'
                         sh "echo $PASS | docker login -u $USER --password-stdin"
-                        sh 'docker push aminemighri/demo-java-Ops:jma-2.0'
+                        sh 'docker push aminemighri/demo-java-Ops:2.0'
                     }
                 }
             }
@@ -32,24 +32,21 @@ pipeline {
             steps {
                 script {
                     echo "deploying the application..."
+                    // Add your deployment steps here
                 }
             }
         }
 
         stage('SCM') {
             steps {
-                script {
-                    echo 'Checking out code...'
-                    checkout scm
-                }
+                checkout scm
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    echo 'Running SonarQube Analysis...'
-                    def mvn = tool 'Maven'
+                    def mvn = tool 'Maven';
                     withSonarQubeEnv() {
                         sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=amine-app-scan -Dsonar.projectName='amine-app-scan'"
                     }
